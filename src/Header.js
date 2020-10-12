@@ -52,6 +52,7 @@ function Header() {
                         {/* shopping basket icon */}
                         <ShoppingBasketIcon />
                         {/* number of items in basket */}
+                        {/* Optional chaining using ?  https://dev.to/aumayeung/how-to-use-the-optional-chaining-operator-in-your-react-app-right-now-1ocj */}
                         <span className="header__optionLineTwo header__basketCount">{state.basket?.length}</span>
                     </div>
                 </Link>
