@@ -1,5 +1,20 @@
 export const intialState = {
-    basket: [],
+    basket: [
+        {
+            id: "9482958",
+            title: "All-new Echo (4th Gen) | With premium sound, smart home hub, and Alexa | Charcoal",
+            price: 12.99,
+            rating: 5,
+            image: "https://images-na.ssl-images-amazon.com/images/G/01/kindle/journeys/MjA4OGQ5Mjkt/MjA4OGQ5Mjkt-MTI3MjNkYjEt-w379._SY304_CB404645652_.jpg"
+        },
+        {
+            id: "9482958",
+            title: "All-new Echo (4th Gen) | With premium sound, smart home hub, and Alexa | Charcoal",
+            price: 12.99,
+            rating: 5,
+            image: "https://images-na.ssl-images-amazon.com/images/G/01/kindle/journeys/MjA4OGQ5Mjkt/MjA4OGQ5Mjkt-MTI3MjNkYjEt-w379._SY304_CB404645652_.jpg"
+        }
+    ],
 }
 
 export default function reducer(state = intialState, action) {
@@ -10,8 +25,17 @@ export default function reducer(state = intialState, action) {
                 basket: [...state.basket, action.payload]
             }
         case 'REMOVE_FROM_BASKET':
-            // remove from basket array
-            break;
+            const newBasket = [...state.basket]
+            const index = state.basket.findIndex((item) => (
+                item.id === action.payload
+            ))
+            if (index >= 0) {
+                newBasket.splice(index, 1)
+            }
+            return {
+                ...state,
+                basket: newBasket
+            }
         default:
             return state;
     }
