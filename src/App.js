@@ -33,7 +33,7 @@ function App() {
       unsubscribe()
     }
   }, [])
-  console.log('user:', state.user)
+
   return (
     <Router>
       <div className="app">
