@@ -5,6 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { StateProvider } from './StateProvider'
 import reducer, { intialState } from './reducer'
+import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css";
 
 ReactDOM.render(
   <React.StrictMode>
