@@ -62,3 +62,8 @@
   border-color: darkgray;
   color: #111;
 }
+
+#login__message {
+  color: red;
+  font-size: 12px;
+}
