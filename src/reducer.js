@@ -10,7 +10,6 @@ export const getBasketTotal = (basket) =>
 export default function reducer(state = intialState, action) {
     switch (action.type) {
         case 'SET_USER':
-            console.log(action)
             return {
                 ...state,
                 user: action.payload
