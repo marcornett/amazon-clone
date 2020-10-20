@@ -4,13 +4,17 @@ import SearchIcon from '@material-ui/icons/Search'
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { useStateValue } from './StateProvider'
 import './Header.css'
+import { auth } from './firebase';
 
 function Header() {
     const [state, dispatch] = useStateValue()
-
+    const login = () => {
+        if (state.user) {
+            auth.signOut()
+        }
+    }
     return (
         <nav className="header">
-            {/* logo on left */}
             <Link to='/'>
                 <img
                     className="header__logo"
@@ -18,40 +22,34 @@ function Header() {
                     alt=""
                 />
             </Link>
-            {/* search box */}
             <div className="header__search">
                 <input type="text" className="header__searchInput" />
                 <SearchIcon className="header__searchIcon" />
             </div>
-            {/* 3 links */}
             <div className="header__nav">
-                {/* 1st link */}
-                <Link to="/login" className="header__link">
-                    <div className="header__option">
-                        <span className="header__optionLineOne">Hello Marcel,</span>
-                        <span className="header__optionLineTwo">Sign in</span>
+                <Link to={!state.user ? "/login" : ""} className="header__link">
+                    <div onClick={login} className="header__option">
+                        <span className="header__optionLineOne">Hello {state.user && state.user.email},</span>
+                        <span className="header__optionLineTwo">{
+                            state.user ? 'Sign out' : 'Sign in'
+                        }</span>
                     </div>
                 </Link>
-                {/* 2nd link */}
                 <Link to="/login" className="header__link">
                     <div className="header__option">
                         <span className="header__optionLineOne">Returns</span>
                         <span className="header__optionLineTwo">& Orders</span>
                     </div>
                 </Link>
-                {/* 3rd link */}
                 <Link to="/login" className="header__link">
                     <div className="header__option">
                         <span className="header__optionLineOne">Your</span>
                         <span className="header__optionLineTwo">Prime</span>
                     </div>
                 </Link>
-                {/* basket icon with number */}
                 <Link to="/checkout" className="header__link">
                     <div className="header__optionBasket">
-                        {/* shopping basket icon */}
                         <ShoppingBasketIcon />
-                        {/* number of items in basket */}
                         {/* Optional chaining using ?  https://dev.to/aumayeung/how-to-use-the-optional-chaining-operator-in-your-react-app-right-now-1ocj */}
                         <span className="header__optionLineTwo header__basketCount">{state.basket?.length}</span>
                     </div>

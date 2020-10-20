@@ -3,12 +3,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  max-height: 400px;
-  min-width: 100px;
   margin: 10px;
   background-color: white;
   padding: 20px;
-  width: 100%;
   z-index: 1;
 }
 
@@ -18,8 +15,6 @@
 
 .product img {
   max-height: 200px;
-  object-fit: contain;
-  width: 100%;
   margin-bottom: 15px;
 }
 

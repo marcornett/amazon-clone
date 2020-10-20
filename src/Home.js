@@ -1,17 +1,41 @@
 import React from 'react'
 import Product from "./Product"
+import ReactBootstrapCarousel from "react-bootstrap-carousel";
 import './Home.css'
 
 function Home() {
     return (
         <div className="home">
-            <img
-                className="home__img"
-                src="https://images-na.ssl-images-amazon.com/images/G/01/digital/video/merch/2020_PrimeDay/GW/RB-2817_PD2020_Channels_GW_Desktop_Tablet_Hero_Biz_EN_V2b_1x._CB403910725_.jpg"
-                alt=""
-            />
-            {/* Product id, title, price, rating, image */}
-            <div className="home__row">
+            <div id="home__img">
+                <ReactBootstrapCarousel
+                    autoplay={true}
+                    pauseOnVisibility={true}
+                    slideshowSpeed={4000}
+                    indicators={false}
+                    version={4}
+                    wrap={true}
+                    animation={true}
+                >
+                    <img
+                        src="https://images-na.ssl-images-amazon.com/images/G/01/kindle/journeys/Yzk3OWQ3NDUt/Yzk3OWQ3NDUt-YTVlMmNiZTgt-w1500._CB418667451_.jpg"
+                        alt=""
+                    />
+                    <img
+                        src="https://images-na.ssl-images-amazon.com/images/G/01/img18/home/journeys/YjAyNjAxMmQt/YjAyNjAxMmQt-ZDczMDBiZmYt-w1500._CB402936604_.jpg"
+                        alt=""
+                    />
+                    <img
+                        src="https://images-na.ssl-images-amazon.com/images/G/01/kindle/journeys/Yzk3OWQ3NDUt/Yzk3OWQ3NDUt-OTc3NDY4YmQt-w1500._CB418667791_.jpg"
+                        alt=""
+                    />
+                    <img
+                        src="https://images-na.ssl-images-amazon.com/images/G/01/digital/video/merch/2020/Other/RB-2884_SVOD_Halloween/Amazon_GW_DesktopTallHero_RB-2884_SVOD_V2_Halloween_1500x600._CB403043380_.jpg"
+                        alt=""
+                    />
+
+                </ReactBootstrapCarousel>
+            </div>
+            <div className="home__productList">
 
                 <Product
                     id="9482958"
@@ -27,8 +51,7 @@ function Home() {
                     rating={5}
                     image="https://images-na.ssl-images-amazon.com/images/I/61XxVwZ2x3L._AC_SL1500_.jpg"
                 />
-            </div>
-            <div className="home__row">
+
                 <Product
                     id="9482958"
                     title="Delta Faucet 5-Spray H2Okinetic In2ition 2-in-1 Dual Hand Held Shower Head with Hose and Magnetic Docking, Matte Black 58480-BL-PK"
@@ -50,8 +73,7 @@ function Home() {
                     rating={5}
                     image="https://images-na.ssl-images-amazon.com/images/I/51WBbIS9z2L._AC_SL1500_.jpg"
                 />
-            </div>
-            <div className="home__row">
+
                 <Product
                     id="9482958"
                     title="Serta RNE-3S-CC-SET Rane Collection Convertible Sofa, L66.1 x W33.1 x H29.5, Charcoal"

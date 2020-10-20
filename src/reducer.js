@@ -1,20 +1,6 @@
 export const intialState = {
-    basket: [
-        {
-            id: "9482958",
-            title: "All-new Echo (4th Gen) | With premium sound, smart home hub, and Alexa | Charcoal",
-            price: 12.99,
-            rating: 5,
-            image: "https://images-na.ssl-images-amazon.com/images/G/01/kindle/journeys/MjA4OGQ5Mjkt/MjA4OGQ5Mjkt-MTI3MjNkYjEt-w379._SY304_CB404645652_.jpg"
-        },
-        {
-            id: "9482958",
-            title: "All-new Echo (4th Gen) | With premium sound, smart home hub, and Alexa | Charcoal",
-            price: 12.99,
-            rating: 5,
-            image: "https://images-na.ssl-images-amazon.com/images/G/01/kindle/journeys/MjA4OGQ5Mjkt/MjA4OGQ5Mjkt-MTI3MjNkYjEt-w379._SY304_CB404645652_.jpg"
-        }
-    ],
+    basket: [],
+    user: null
 }
 
 export const getBasketTotal = (basket) =>
@@ -23,6 +9,11 @@ export const getBasketTotal = (basket) =>
 
 export default function reducer(state = intialState, action) {
     switch (action.type) {
+        case 'SET_USER':
+            return {
+                ...state,
+                user: action.payload
+            }
         case 'ADD_TO_BASKET':
             return {
                 ...state,

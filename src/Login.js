@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+import { auth } from './firebase'
 import './Login.css'
 
 function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [formMessage, setMessage] = useState('')
+    const history = useHistory()
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value)
@@ -17,12 +20,35 @@ function Login() {
 
     const signIn = (e) => {
         e.preventDefault()
-        // TODO Firebase
+
+        auth.signInWithEmailAndPassword(email, password)
+            .then((auth) => {
+                // logged in, rediret to homepage
+                history.push('/')
+            })
+            .catch((err) => setMessage(err.message))
+    }
+
+    const signInWithDemo = (e) => {
+        e.preventDefault()
+
+        auth.signInWithEmailAndPassword("test@gmail.com", "123456")
+            .then((auth) => {
+                // logged in, rediret to homepage
+                history.push('/')
+            })
+            .catch((err) => setMessage(err.message))
     }
 
     const register = (e) => {
         e.preventDefault()
-        // TODO Firebase
+
+        auth.createUserWithEmailAndPassword(email, password)
+            .then((auth) => {
+                // created a user and logged in, redirect to home page
+                history.push('/')
+            })
+            .catch((err) => setMessage(err.message))
     }
 
     return (
@@ -40,7 +66,7 @@ function Login() {
                     <label htmlFor="">
                         <h5>E-mail</h5>
                         <input
-                            type="text"
+                            type="email"
                             value={email}
                             onChange={handleEmailChange}
                             required
@@ -53,15 +79,19 @@ function Login() {
                             type="password"
                             value={password}
                             onChange={handlePasswordChange}
+                            required
                         />
                     </label>
                     <br />
                     <input type="submit" value="Sign In" id="login__signInButton"
                         onClick={signIn} />
+                    <input type="submit" value="Sign In as Demo User" id="login__signInButton"
+                        onClick={signInWithDemo} />
                 </form>
-                <p>This is a FAKE AMAZON.</p>
                 <button className="login__registerButton" onClick={register}>Create Amazon Account</button>
             </div>
+            <br />
+            <p id="login__message">{formMessage}</p>
         </div >
     )
 }
