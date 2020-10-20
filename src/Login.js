@@ -88,7 +88,6 @@ function Login() {
                     <input type="submit" value="Sign In as Demo User" id="login__signInButton"
                         onClick={signInWithDemo} />
                 </form>
-                <p>This is a AMAZON CLONE.</p>
                 <button className="login__registerButton" onClick={register}>Create Amazon Account</button>
             </div>
             <br />
