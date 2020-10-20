@@ -1,0 +1,13 @@
+.checkout {
+  display: flex;
+}
+
+.checkout__title {
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+}
+
+.checkout__ad {
+  width: 100%;
+  margin-bottom: 10px;
+}
