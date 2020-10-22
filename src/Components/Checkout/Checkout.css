@@ -1,5 +1,6 @@
 .checkout {
   display: flex;
+  background-color: white;
 }
 
 .checkout__title {
@@ -10,4 +11,8 @@
 .checkout__ad {
   width: 100%;
   margin-bottom: 10px;
+}
+
+.checkout__greeting {
+  font-weight: 700;
 }
