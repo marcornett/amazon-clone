@@ -67,3 +67,8 @@
   margin-left: 10px;
   margin-right: 10px;
 }
+
+.header__linkbar {
+  padding-bottom: 35px;
+  background-color: #232f3e;
+}
