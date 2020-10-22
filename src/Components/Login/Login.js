@@ -85,7 +85,7 @@ function Login() {
                     <br />
                     <input type="submit" value="Sign In" id="login__signInButton"
                         onClick={signIn} />
-                    <input type="submit" value="Sign In as Demo User" id="login__signInButton"
+                    <input type="submit" value="Sign In as Demo User" id="login__signInDemoButton"
                         onClick={signInWithDemo} />
                 </form>
                 <button className="login__registerButton" onClick={register}>Create Amazon Account</button>

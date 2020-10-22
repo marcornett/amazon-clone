@@ -7,7 +7,8 @@ import './Header.css'
 import { auth } from '../../Firebase/firebase';
 
 function Header() {
-    const [state, dispatch] = useStateValue()
+    const [state,] = useStateValue()
+
     const login = () => {
         if (state.user) {
             auth.signOut()
