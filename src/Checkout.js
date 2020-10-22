@@ -17,7 +17,7 @@ function Checkout() {
                 />
                 {state.basket?.length === 0 ? (
                     <div>
-                        <h2 className="checkout__title">Your Amazon Cart is empty.y</h2>
+                        <h2 className="checkout__title">Your Amazon Cart is empty.</h2>
                         <p>You have no items in your basket. To buy one or more items, click "Add to basket" next to the item.</p>
                     </div>
                 ) : (
