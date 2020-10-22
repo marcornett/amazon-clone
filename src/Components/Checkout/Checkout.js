@@ -15,6 +15,11 @@ function Checkout() {
                     src="https://images-na.ssl-images-amazon.com/images/G/02/UK_CCMP/TM/OCC_Amazon1._CB423492668_.jpg"
                     alt=""
                 />
+                {state.user ? (
+                    <h5 className="checkout__greeting">Hello, {state.user.email}</h5>
+                )
+                    :
+                    null}
                 {state.basket?.length === 0 ? (
                     <div>
                         <h2 className="checkout__title">Your Amazon Cart is empty.</h2>
