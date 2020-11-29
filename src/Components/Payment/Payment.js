@@ -31,10 +31,13 @@ function Payment() {
                 //  Stripe expects the total in a currencies subunits ($ => cents)
                 url: `/payments/create?total=${getBasketTotal(state.basket) * 100}`
             })
+            console.log(response)
             setClientSecret(response.data.clientSecret)
         }
         getClientSecret()
     }, [state.basket])
+
+    console.log('client secret', clientSecret)
 
     const handleSubmit = async (event) => {
         event.preventDefault()
