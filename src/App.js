@@ -15,7 +15,7 @@ import { Elements } from '@stripe/react-stripe-js'
 function App() {
   const stripePromise = loadStripe(
     'pk_test_51HsttbDX941wjKlxV86OIIIlwYu6qQKt4gBoPjfRSocVAGquOq1SSkhZLmqgRxZq05CLrpTJVigqPMupYYdSrTeq00aFKEn3g5'
-    )
+  )
   const [state, dispatch] = useStateValue()
 
   useEffect(() => {
@@ -54,9 +54,9 @@ function App() {
           </Route>
           <Route path="/payment">
             <Header />
-              <Elements stripe={stripePromise}>
-                <Payment />
-              </Elements> 
+            <Elements stripe={stripePromise}>
+              <Payment />
+            </Elements>
           </Route>
           <Route path="/">
             <Header />
