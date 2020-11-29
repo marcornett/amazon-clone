@@ -5,10 +5,17 @@ import Home from './Components/Home/Home'
 import Header from './Components/Header/Header'
 import Login from './Components/Login/Login'
 import Checkout from './Components/Checkout/Checkout'
+import Payment from './Components/Payment/Payment'
 import { useStateValue } from './ContextAPI/StateProvider'
 import { auth } from './Firebase/firebase'
+import { loadStripe } from '@stripe/stripe-js'
+import { Elements } from '@stripe/react-stripe-js'
+
 
 function App() {
+  const stripePromise = loadStripe(
+    'pk_test_51HsttbDX941wjKlxV86OIIIlwYu6qQKt4gBoPjfRSocVAGquOq1SSkhZLmqgRxZq05CLrpTJVigqPMupYYdSrTeq00aFKEn3g5'
+  )
   const [state, dispatch] = useStateValue()
   const stableDispatch = useCallback(dispatch, [state.user])
 
@@ -46,6 +53,12 @@ function App() {
           </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/payment">
+            <Header />
+            <Elements stripe={stripePromise}>
+              <Payment />
+            </Elements>
           </Route>
           <Route path="/">
             <Header />

@@ -3,9 +3,12 @@ import NumberFormat from 'react-number-format';
 import { useStateValue } from '../../ContextAPI/StateProvider'
 import { getBasketTotal } from '../../ContextAPI/reducer'
 import './Subtotal.css'
+import { useHistory } from 'react-router-dom';
 
 function Subtotal() {
     const [state,] = useStateValue()
+    const history = useHistory()
+    
     return (
         <div className="subtotal">
             <NumberFormat
@@ -26,8 +29,8 @@ function Subtotal() {
                     </React.Fragment>
                 }
             />
-            <button>Proceed to checkout</button>
-            {/* button */}
+            <button onClick={e => history.push('/payment')}>Proceed to checkout</button>
+
         </div>
     )
 }
