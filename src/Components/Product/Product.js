@@ -3,7 +3,7 @@ import { useStateValue } from '../../ContextAPI/StateProvider'
 import './Product.css'
 
 function Product({ id, title, price, rating, image }) {
-    const [state, dispatch] = useStateValue()
+    const [, dispatch] = useStateValue()
 
     const addToBasket = (e) => {
         dispatch({
@@ -31,7 +31,11 @@ function Product({ id, title, price, rating, image }) {
                         Array(rating)
                             .fill()
                             .map((_, i) => (
-                                <p key={i}>⭐</p>
+                                <span
+                                    key={i}
+                                    role="img"
+                                    aria-label="Star emoji"
+                                >⭐</span>
                             ))
                     }
                 </div>

@@ -6,9 +6,9 @@ import './Subtotal.css'
 import { useHistory } from 'react-router-dom';
 
 function Subtotal() {
-    const [state, dispatch] = useStateValue()
+    const [state,] = useStateValue()
     const history = useHistory()
-
+    
     return (
         <div className="subtotal">
             <NumberFormat

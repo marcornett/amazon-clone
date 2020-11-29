@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from './Components/Home/Home'
@@ -17,18 +17,19 @@ function App() {
     'pk_test_51HsttbDX941wjKlxV86OIIIlwYu6qQKt4gBoPjfRSocVAGquOq1SSkhZLmqgRxZq05CLrpTJVigqPMupYYdSrTeq00aFKEn3g5'
   )
   const [state, dispatch] = useStateValue()
+  const stableDispatch = useCallback(dispatch, [state.user])
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         // user logged in
-        dispatch({
+        stableDispatch({
           type: 'SET_USER',
           payload: authUser
         })
       } else {
         // user logged out
-        dispatch({
+        stableDispatch({
           type: 'SET_USER',
           payload: null
         })
@@ -37,9 +38,10 @@ function App() {
 
     return () => {
       // useEffect clean area
+      console.log('detached')
       unsubscribe()
     }
-  }, [])
+  }, [stableDispatch])
 
   return (
     <Router>
