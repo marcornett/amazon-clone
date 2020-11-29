@@ -31,6 +31,7 @@ function Payment() {
                 //  Stripe expects the total in a currencies subunits ($ => cents)
                 url: `/payments/create?total=${getBasketTotal(state.basket) * 100}`
             })
+            //  Todo: Not getting client secret from response
             console.log(response)
             setClientSecret(response.data.clientSecret)
         }
@@ -42,7 +43,6 @@ function Payment() {
     const handleSubmit = async (event) => {
         event.preventDefault()
         setProcessing(true)
-
         const payload = await stripe.confirmCardPayment(clientSecret, {
             // type: 'card',
             card: elements.getElement(CardElement)
