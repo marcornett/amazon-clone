@@ -18,7 +18,7 @@ function Payment() {
                 </h1>
                 <div className="payment__section">
                     <div className="payment__title">
-                        <h3>Delivery Address</h3>
+                        <h4>Delivery Address</h4>
                     </div>
                     <div className="payment__address">
                         <p>{state.user?.email}</p>
@@ -28,7 +28,7 @@ function Payment() {
                 </div>
                 <div className="payment__section">
                     <div className="payment__title">
-                        <h3>Review items and delivery</h3>
+                        <h4>Review items and delivery</h4>
                     </div>
                     <div className="payment__items">
                         {state.basket?.map((item, i) => (
@@ -47,7 +47,7 @@ function Payment() {
 
                 <div className="payment__section">
                     <div className="payment__title">
-                        <h3>Payment Method</h3>
+                        <h4>Payment Method</h4>
                     </div>
                     <div className="payment__details">
                         {/* Card stripe payments */}
