@@ -6,10 +6,12 @@ import Header from './Components/Header/Header'
 import Login from './Components/Login/Login'
 import Checkout from './Components/Checkout/Checkout'
 import Payment from './Components/Payment/Payment'
+import Orders from './Components/Orders/Orders'
 import { useStateValue } from './ContextAPI/StateProvider'
 import { auth } from './Firebase/firebase'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
+
 
 
 function App() {
@@ -17,7 +19,7 @@ function App() {
     'pk_test_51HsttbDX941wjKlxV86OIIIlwYu6qQKt4gBoPjfRSocVAGquOq1SSkhZLmqgRxZq05CLrpTJVigqPMupYYdSrTeq00aFKEn3g5'
   )
   const [state, dispatch] = useStateValue()
-  const stableDispatch = useCallback(dispatch, [state.user])
+  const stableDispatch = useCallback(dispatch, [state.user, dispatch])
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -41,7 +43,7 @@ function App() {
       console.log('detached')
       unsubscribe()
     }
-  }, [stableDispatch])
+  }, [stableDispatch,])
 
   return (
     <Router>
@@ -59,6 +61,10 @@ function App() {
             <Elements stripe={stripePromise}>
               <Payment />
             </Elements>
+          </Route>
+          <Route path="/orders">
+            <Header />
+            <Orders />
           </Route>
           <Route path="/">
             <Header />
