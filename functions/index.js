@@ -10,8 +10,11 @@ const functions = require('firebase-functions');
 
 const express = require('express')
 const cors = require('cors')
-const stripe = require('stripe')(process.env.STRIPE_SECRETKEY)
+const Stripe = require('stripe')
 require('dotenv').config()
+const stripe = Stripe(process.env.STRIPE_SECRETKEY,{
+    
+})
 
 const app = express()
 
@@ -24,17 +27,19 @@ app.get('/', (request, response) => {
 
 app.post('/payments/create', async (request, response) => {
     const total = request.query.total
-    // TODO: solve issue with stripe authorization token
-    console.log('Request params:', request.params)
-    console.log('Payment request received', total)
 
+    console.log(`Payment request received ${total}¢`)
+    
     const paymentIntent = await stripe.paymentIntents.create({
-        amount: total, //subunits of currency ($ => cents)
+        amount: total, //subunits of currency ($ => ¢)
         currency: "usd",
+    })
+    console.log({
+        clientSecret: paymentIntent.client_secret,
     })
 
     response.status(201).send({
-        clientSecret: paymentIntent.clientSecret,
+        clientSecret: paymentIntent.client_secret,
     })
 })
 

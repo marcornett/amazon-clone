@@ -1,3 +1,7 @@
+Amazon clone built in React, Firebase, and Express. Add to cart functionality and using Stripe.js to handle credit card payments. Sign up, sign in, and sign out functionality. Navigation is setup with React Router. Context API stores state for application.
+
+___________________________________________________________________
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
