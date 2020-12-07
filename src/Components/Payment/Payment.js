@@ -13,7 +13,7 @@ import './Payment.css'
 function Payment() {
     const stripe = useStripe()
     const elements = useElements()
-    const [state,] = useStateValue()
+    const [state, dispatch] = useStateValue()
     const history = useHistory()
 
     const [succeeded, setSucceeded] = useState(false)
@@ -26,32 +26,40 @@ function Payment() {
     useEffect(() => {
         //  generate stripe secret on load and when basket changes
         const getClientSecret = async () => {
-            const response = await axios({
-                method: 'post',
-                //  Stripe expects the total in a currencies subunits ($ => cents)
-                url: `/payments/create?total=${getBasketTotal(state.basket) * 100}`
-            })
-            //  Todo: Not getting client secret from response
-            console.log(response)
-            setClientSecret(response.data.clientSecret)
+            if (getBasketTotal(state.basket) > 0){
+
+                const response = await axios({
+                    method: 'post',
+                    //  Stripe expects the total in a currencies subunits ($ => cents)
+                    url: `/payments/create?total=${getBasketTotal(state.basket) * 100}`
+                })
+                //  Todo: Not getting client secret from response
+                setClientSecret(response.data?.clientSecret)
+            }
         }
         getClientSecret()
+        
     }, [state.basket])
-
-    console.log('client secret', clientSecret)
 
     const handleSubmit = async (event) => {
         event.preventDefault()
         setProcessing(true)
         const payload = await stripe.confirmCardPayment(clientSecret, {
             // type: 'card',
-            card: elements.getElement(CardElement)
+            payment_method: {
+                card: elements.getElement(CardElement)
+            }
         }).then(({ paymentIntent }) => {
             // paymentInt is the payment confirmation
             setSucceeded(true)
             setError(null)
             setProcessing(false)
             // replaces history array so you can't go backward in browser
+
+            dispatch({
+                type: 'EMPTY_BASKET'
+            })
+
             history.replace('/orders')
         })
     }
