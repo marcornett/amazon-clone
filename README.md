@@ -1,3 +1,6 @@
+Amazon clone built in React, Firebase, and Express. Navigation is setup with React Router. Sign in and sign out functionality. Add to cart but does not persist on refresh. Context API stores state for application.
+___________________________________________________________________
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
