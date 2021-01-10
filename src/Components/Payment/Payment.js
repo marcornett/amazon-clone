@@ -15,25 +15,21 @@ function Payment() {
     const elements = useElements()
     const [state, dispatch] = useStateValue()
     const history = useHistory()
-
     const [succeeded, setSucceeded] = useState(false)
     const [processing, setProcessing] = useState("")
     const [error, setError] = useState(null)
     const [disabled, setDisabled] = useState(true)
-
     const [clientSecret, setClientSecret] = useState(true)
 
     useEffect(() => {
         //  generate stripe secret on load and when basket changes
         const getClientSecret = async () => {
             if (getBasketTotal(state.basket) > 0){
-
                 const response = await axios({
                     method: 'post',
                     //  Stripe expects the total in a currencies subunits ($ => cents)
-                    url: `/payments/create?total=${getBasketTotal(state.basket) * 100}`
+                    url: `/payments/create?total=${Math.round(getBasketTotal(state.basket) * 100)}`
                 })
-                //  Todo: Not getting client secret from response
                 setClientSecret(response.data?.clientSecret)
             }
         }
@@ -55,11 +51,9 @@ function Payment() {
             setError(null)
             setProcessing(false)
             // replaces history array so you can't go backward in browser
-
             dispatch({
                 type: 'EMPTY_BASKET'
             })
-
             history.replace('/orders')
         })
     }
@@ -104,17 +98,19 @@ function Payment() {
                                 rating={item.rating}
                                 image={item.image}
                             />
-
                         ))}
                     </div>
                 </div>
-
                 <div className="payment__section">
                     <div className="payment__title">
                         <h4>Payment Method</h4>
                     </div>
                     <div className="payment__details">
                         <form onSubmit={handleSubmit}>
+                            <p>No authentication (default U.S. card): 4242 4242 4242 4242.</p>
+                            <p>Month: 04/24</p>
+                            <p>CVC: 424</p>
+                            <p>ZIP: 24242</p>
                             <CardElement onChange={handleChange} />
                             <div className="payment__price">
                                 <NumberFormat
