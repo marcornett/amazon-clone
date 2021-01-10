@@ -37,10 +37,7 @@ function App() {
         })
       }
     })
-
     return () => {
-      // useEffect clean area
-      console.log('detached')
       unsubscribe()
     }
   }, [stableDispatch,])
